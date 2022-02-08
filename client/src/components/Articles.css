@@ -1,6 +1,7 @@
 .articles {
   transform: translateY(-70px);
   transition: 0.3s;
+  font-family: "Lato-Regular";
 }
 
 .articles--active {

@@ -8,7 +8,12 @@ import Article from './Article';
 const Articles = () => {
 	const { isAddActive, state } = useContext(AppContext);
 	const articles = state.map((article) => (
-		<Article key={article.id} text={article.text} />
+		<Article
+			key={article.id}
+			text={article.text}
+			isEdit={article.isEdit}
+			id={article.id}
+		/>
 	));
 
 	return (
