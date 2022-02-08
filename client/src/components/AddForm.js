@@ -3,12 +3,13 @@ import { useContext, useRef, useState } from 'react';
 import { AppContext } from './AppContext';
 
 const AddForm = () => {
-	const { isAddActive, setIsAddActive } = useContext(AppContext);
+	const { isAddActive, setIsAddActive, dispatch } = useContext(AppContext);
 	const inputRef = useRef();
 	const [addValue, setAddValue] = useState('');
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
+		dispatch({ type: 'CLOSEEDIT' });
 		if (!isAddActive) {
 			setTimeout(() => {
 				inputRef.current.style.opacity = 1;

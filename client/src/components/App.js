@@ -12,15 +12,16 @@ function App() {
 	const [state, dispatch] = useReducer(reducer, [
 		{
 			id: 1,
-			text: 'Pierwszy artykuł jest dość długi i zobaczymy na ile wystarczy ale zobaczmy ile będfzie to trwało i tak dalej ale zaraz',
-			isEdit: true,
+			text: 'Pierwszy artykuł jest dość długi i zobaczymy na ile wystarczy ale zobaczmy ile będzie to trwało i tak dalej ale zaraz',
+			isEdit: false,
 		},
 		{ id: 2, text: 'Drugi artykuł', isEdit: false },
 		{ id: 3, text: 'Trzeci artykuł', isEdit: false },
 	]);
 
 	return (
-		<AppContext.Provider value={{ isAddActive, setIsAddActive, state }}>
+		<AppContext.Provider
+			value={{ isAddActive, setIsAddActive, state, dispatch }}>
 			<div className='App'>
 				<AddForm />
 				<Articles />
