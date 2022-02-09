@@ -16,8 +16,10 @@ const AddForm = () => {
 				inputRef.current.focus();
 			}, 250);
 		} else {
+			if (addValue.length > 0) {
+				dispatch({ type: 'ADD', text: addValue });
+			}
 			setAddValue('');
-			console.log('value: ', addValue);
 			inputRef.current.style.opacity = 0;
 		}
 		setIsAddActive(!isAddActive);

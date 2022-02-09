@@ -5,10 +5,11 @@ import saveIcon from '../icons/save-solid.svg';
 import { useContext, useEffect, useRef, useState } from 'react';
 import { AppContext } from './AppContext';
 
-const Article = ({ text, isEdit, id }) => {
+const Article = ({ text, date, isEdit, id }) => {
 	const textareaRef = useRef();
 	const [value, setValue] = useState(text);
-	const { dispatch } = useContext(AppContext);
+	const { dispatch, setIsDeleteDialougeActive, setIdToDelete } =
+		useContext(AppContext);
 
 	useEffect(() => {
 		if (isEdit) {
@@ -24,9 +25,8 @@ const Article = ({ text, isEdit, id }) => {
 		if (e.target.classList.contains('article-icon--active')) {
 			dispatch({ type: 'UPDATE', id: e.target.dataset.id, text: value });
 		} else {
-			console.log('delete kurwa');
-
-			dispatch({ type: 'DELETE', id: e.target.dataset.id });
+			setIdToDelete(e.target.dataset.id);
+			setIsDeleteDialougeActive(true);
 		}
 	};
 
@@ -52,12 +52,13 @@ const Article = ({ text, isEdit, id }) => {
 
 	const iconToView = isEdit ? saveIcon : deleteIcon;
 	const iconClass = isEdit ? 'article-icon--active' : '';
+	const articleClass = isEdit ? 'article--active' : '';
 
 	return (
-		<article className='article'>
+		<article className={`article ${articleClass}`}>
 			<section className='article-content'>
 				{textToView}
-				<p className='article-date'>22-02-2022, 16:32:21</p>
+				<p className='article-date'>{date}</p>
 			</section>
 
 			<img

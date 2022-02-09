@@ -11,6 +11,7 @@ const Articles = () => {
 		<Article
 			key={article.id}
 			text={article.text}
+			date={article.date}
 			isEdit={article.isEdit}
 			id={article.id}
 		/>
