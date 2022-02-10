@@ -23,6 +23,7 @@ const Article = ({ text, date, isEdit, id }) => {
 	}, [isEdit]);
 
 	const handleNavClick = (e) => {
+		console.log(e.target.dataset.id);
 		const id = e.target.dataset.id;
 		if (e.target.classList.contains('article-icon--active')) {
 			if (value.length > 0) {

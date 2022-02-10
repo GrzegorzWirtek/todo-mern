@@ -28,7 +28,6 @@ app.get('*', (req, res) => {
 app.post('/addtask', async (req, res) => {
 	const { id, text, date, isEdit } = req.body;
 	const task = new Task({
-		id,
 		text,
 		date,
 		isEdit,
@@ -41,9 +40,8 @@ app.post('/addtask', async (req, res) => {
 app.post('/updatetask', async (req, res) => {
 	const { id, text, date, isEdit } = req.body;
 	await Task.findOneAndUpdate(
-		{ id },
+		{ _id: id },
 		{
-			id,
 			text,
 			date,
 			isEdit,
@@ -54,8 +52,8 @@ app.post('/updatetask', async (req, res) => {
 });
 
 app.delete('/deletetask/:id', async (req, res) => {
-	const id = Number(req.params.id);
-	await Task.deleteOne({ id });
+	const id = req.params.id;
+	await Task.deleteOne({ _id: id });
 	const tasks = await Task.find();
 	res.json({ tasks });
 });
