@@ -9,11 +9,11 @@ const Articles = () => {
 	const { isAddActive, state } = useContext(AppContext);
 	const articles = state.map((article) => (
 		<Article
-			key={article.id}
+			key={article._id}
 			text={article.text}
 			date={article.date}
 			isEdit={article.isEdit}
-			id={article.id}
+			id={article._id}
 		/>
 	));
 

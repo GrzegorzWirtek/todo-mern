@@ -1,6 +1,7 @@
 import './Article.css';
 import deleteIcon from '../icons/trash-alt-solid.svg';
 import saveIcon from '../icons/save-solid.svg';
+import getDate from './getDate';
 
 import { useContext, useEffect, useRef, useState } from 'react';
 import { AppContext } from './AppContext';
@@ -25,7 +26,24 @@ const Article = ({ text, date, isEdit, id }) => {
 		const id = e.target.dataset.id;
 		if (e.target.classList.contains('article-icon--active')) {
 			if (value.length > 0) {
-				dispatch({ type: 'UPDATE', id, text: value });
+				const task = {
+					id,
+					text: value,
+					date: getDate(),
+					isEdit: false,
+				};
+				const options = {
+					method: 'post',
+					headers: {
+						'Content-Type': 'application/json',
+					},
+					body: JSON.stringify(task),
+				};
+				fetch('/updatetask', options)
+					.then((res) => res.json())
+					.then((data) =>
+						dispatch({ type: 'UPDATE', newState: data.tasks.reverse() }),
+					);
 			} else {
 				dispatch({ type: 'DELETE', id });
 			}

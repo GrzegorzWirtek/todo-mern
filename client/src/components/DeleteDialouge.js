@@ -8,7 +8,13 @@ const DeleteDialouge = () => {
 
 	const handleDeleteButton = () => {
 		setIsDeleteDialougeActive(false);
-		dispatch({ type: 'DELETE', id: idToDelete });
+
+		fetch(`/deletetask/${idToDelete}`, { method: 'DELETE' })
+			.then((res) => res.json())
+			.then((data) =>
+				dispatch({ type: 'DELETE', newState: data.tasks.reverse() }),
+			);
+
 		setIdToDelete(null);
 	};
 

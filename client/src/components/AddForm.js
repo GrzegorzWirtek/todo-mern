@@ -1,12 +1,7 @@
 import './AddForm.css';
 import { useContext, useRef, useState } from 'react';
 import { AppContext } from './AppContext';
-
-const getDate = () => {
-	const currentDate = new Date();
-	const date = currentDate.toLocaleString();
-	return date;
-};
+import getDate from './getDate';
 
 const AddForm = () => {
 	const { isAddActive, setIsAddActive, dispatch } = useContext(AppContext);
@@ -24,7 +19,6 @@ const AddForm = () => {
 		} else {
 			if (addValue.length > 0) {
 				const task = {
-					id: Date.now(),
 					text: addValue,
 					date: getDate(),
 					isEdit: false,

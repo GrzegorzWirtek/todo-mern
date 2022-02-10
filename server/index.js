@@ -38,6 +38,28 @@ app.post('/addtask', async (req, res) => {
 	res.json({ tasks });
 });
 
+app.post('/updatetask', async (req, res) => {
+	const { id, text, date, isEdit } = req.body;
+	await Task.findOneAndUpdate(
+		{ id },
+		{
+			id,
+			text,
+			date,
+			isEdit,
+		},
+	);
+	const tasks = await Task.find();
+	res.json({ tasks });
+});
+
+app.delete('/deletetask/:id', async (req, res) => {
+	const id = Number(req.params.id);
+	await Task.deleteOne({ id });
+	const tasks = await Task.find();
+	res.json({ tasks });
+});
+
 app.listen(PORT, () => {
 	console.log(`Server listening on ${PORT}`);
 });
