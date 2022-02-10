@@ -24,15 +24,15 @@
 }
 
 .article-textarea {
-  font-size: 24px;
-  font-family: 'Lato-regular';
-  background-color: transparent;
+  display: block;
   width: 100%;
+  overflow: hidden;
   resize: none;
   outline: none;
   border: none;
-  overflow: hidden;
-  display: block;
+  font-family: 'Lato-regular';
+  font-size: 24px;
+  background-color: transparent;
 
 }
 

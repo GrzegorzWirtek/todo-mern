@@ -5,14 +5,14 @@ const getDate = () => {
 };
 
 const reducer = (state, action) => {
-	const { type, id, text } = action;
+	const { type, id, text, newState } = action;
 
 	switch (type) {
+		case 'ONLOAD': {
+			return newState;
+		}
 		case 'ADD': {
-			return [
-				{ id: Date.now(), text, date: getDate(), idEdit: false },
-				...state,
-			];
+			return newState;
 		}
 		case 'EDIT':
 			return state.filter((article) => {

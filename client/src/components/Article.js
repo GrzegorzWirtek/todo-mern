@@ -22,10 +22,15 @@ const Article = ({ text, date, isEdit, id }) => {
 	}, [isEdit]);
 
 	const handleNavClick = (e) => {
+		const id = e.target.dataset.id;
 		if (e.target.classList.contains('article-icon--active')) {
-			dispatch({ type: 'UPDATE', id: e.target.dataset.id, text: value });
+			if (value.length > 0) {
+				dispatch({ type: 'UPDATE', id, text: value });
+			} else {
+				dispatch({ type: 'DELETE', id });
+			}
 		} else {
-			setIdToDelete(e.target.dataset.id);
+			setIdToDelete(id);
 			setIsDeleteDialougeActive(true);
 		}
 	};

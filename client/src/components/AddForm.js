@@ -2,6 +2,12 @@ import './AddForm.css';
 import { useContext, useRef, useState } from 'react';
 import { AppContext } from './AppContext';
 
+const getDate = () => {
+	const currentDate = new Date();
+	const date = currentDate.toLocaleString();
+	return date;
+};
+
 const AddForm = () => {
 	const { isAddActive, setIsAddActive, dispatch } = useContext(AppContext);
 	const inputRef = useRef();
@@ -17,7 +23,24 @@ const AddForm = () => {
 			}, 250);
 		} else {
 			if (addValue.length > 0) {
-				dispatch({ type: 'ADD', text: addValue });
+				const task = {
+					id: Date.now(),
+					text: addValue,
+					date: getDate(),
+					isEdit: false,
+				};
+				const options = {
+					method: 'post',
+					headers: {
+						'Content-Type': 'application/json',
+					},
+					body: JSON.stringify(task),
+				};
+				fetch('/addtask', options)
+					.then((res) => res.json())
+					.then((data) =>
+						dispatch({ type: 'ADD', newState: data.tasks.reverse() }),
+					);
 			}
 			setAddValue('');
 			inputRef.current.style.opacity = 0;
