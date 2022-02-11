@@ -3,6 +3,10 @@
   src: local('Lato-regular'), url(./fonts/Lato-Regular.ttf)
 }
 
+body {
+  background-color: #7e7987;
+}
+
 * {
   margin: 0;
   padding: 0;

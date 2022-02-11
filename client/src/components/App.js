@@ -1,10 +1,11 @@
 import './App.css';
 
-import { AppContext } from './AppContext';
+import { AppContext } from '../methods/AppContext';
 import AddForm from './AddForm';
 import Articles from './Articles';
+import Header from './Header';
 import DeleteDialouge from './DeleteDialouge';
-import reducer from '../reducer';
+import reducer from '../methods/reducer';
 
 import { useState, useReducer, useEffect } from 'react';
 
@@ -36,9 +37,7 @@ function App() {
 	return (
 		<AppContext.Provider value={valueProvider}>
 			<div className='App'>
-				<header className='header'>
-					<h1 className='header-text'>Things to do</h1>
-				</header>
+				<Header />
 				<main className='main-wrapper'>
 					{isDeleteDialougeActive && <DeleteDialouge />}
 					<AddForm />

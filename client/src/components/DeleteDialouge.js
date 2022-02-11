@@ -1,6 +1,6 @@
 import './DeleteDialouge.css';
 import { useContext } from 'react';
-import { AppContext } from './AppContext';
+import { AppContext } from '../methods/AppContext';
 
 const DeleteDialouge = () => {
 	const { setIsDeleteDialougeActive, dispatch, idToDelete, setIdToDelete } =

@@ -1,7 +1,7 @@
 import './AddForm.css';
 import { useContext, useRef, useState } from 'react';
-import { AppContext } from './AppContext';
-import getDate from './getDate';
+import { AppContext } from '../methods/AppContext';
+import getDate from '../methods/getDate';
 
 const AddForm = () => {
 	const { isAddActive, setIsAddActive, dispatch } = useContext(AppContext);
@@ -48,14 +48,13 @@ const AddForm = () => {
 			onSubmit={(e) => {
 				handleSubmit(e);
 			}}>
-			<input
+			<textarea
 				type='text'
 				ref={inputRef}
 				value={addValue}
 				onChange={(e) => setAddValue(e.target.value)}
 				className='add-input'
-				placeholder='Write here...'
-			/>
+				placeholder='Write here...'></textarea>
 			<button className='add-button'>Add task</button>
 		</form>
 	);

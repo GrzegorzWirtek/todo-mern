@@ -1,10 +1,10 @@
 import './Article.css';
 import deleteIcon from '../icons/trash-alt-solid.svg';
 import saveIcon from '../icons/save-solid.svg';
-import getDate from './getDate';
+import getDate from '../methods/getDate';
 
 import { useContext, useEffect, useRef, useState } from 'react';
-import { AppContext } from './AppContext';
+import { AppContext } from '../methods/AppContext';
 
 const Article = ({ text, date, isEdit, id }) => {
 	const textareaRef = useRef();
@@ -23,7 +23,6 @@ const Article = ({ text, date, isEdit, id }) => {
 	}, [isEdit]);
 
 	const handleNavClick = (e) => {
-		console.log(e.target.dataset.id);
 		const id = e.target.dataset.id;
 		if (e.target.classList.contains('article-icon--active')) {
 			if (value.length > 0) {
@@ -46,7 +45,11 @@ const Article = ({ text, date, isEdit, id }) => {
 						dispatch({ type: 'UPDATE', newState: data.tasks.reverse() }),
 					);
 			} else {
-				dispatch({ type: 'DELETE', id });
+				fetch(`/deletetask/${id}`, { method: 'DELETE' })
+					.then((res) => res.json())
+					.then((data) =>
+						dispatch({ type: 'DELETE', newState: data.tasks.reverse() }),
+					);
 			}
 		} else {
 			setIdToDelete(id);
@@ -85,13 +88,15 @@ const Article = ({ text, date, isEdit, id }) => {
 				<p className='article-date'>{date}</p>
 			</section>
 
-			<img
-				data-id={id}
-				className={`article-icon ${iconClass}`}
-				src={iconToView}
-				onClick={handleNavClick}
-				alt='icon'
-			/>
+			<nav className='article-nav'>
+				<img
+					data-id={id}
+					className={`article-icon ${iconClass}`}
+					src={iconToView}
+					onClick={handleNavClick}
+					alt='icon'
+				/>
+			</nav>
 		</article>
 	);
 };

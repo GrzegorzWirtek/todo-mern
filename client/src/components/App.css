@@ -2,20 +2,6 @@
   padding-top: 20px;
 }
 
-.header {
-  width: 95%;
-  max-width: 900px;
-  margin: 0 auto;
-  padding: 10px 0;
-  border-radius: 5px;
-  background-color: rgb(232, 232, 200);
-}
-
-.header-text {
-  text-align: center;
-  font-family: 'Lato-Regular';
-}
-
 .main-wrapper {
   position: relative;
   width: 95%;

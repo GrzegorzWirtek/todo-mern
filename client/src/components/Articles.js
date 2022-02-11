@@ -1,7 +1,7 @@
 import './Articles.css';
 
 import { useContext } from 'react';
-import { AppContext } from './AppContext';
+import { AppContext } from '../methods/AppContext';
 
 import Article from './Article';
 

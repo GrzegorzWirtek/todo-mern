@@ -1,7 +1,7 @@
 .article {
   display: flex;
   border-radius: 5px;
-  background-color: rgb(194, 194, 194);
+  background-color: #e1f8dc;
   margin-top: 10px;
   padding: 10px 10px;
 }
@@ -14,6 +14,7 @@
   flex-grow: 1;
   border-right: 2px solid rgba(0, 0, 0, 0.234);
   padding-right: 10px;
+  overflow: hidden;
 }
 
 .article-text {
@@ -21,6 +22,8 @@
   font-family: 'Lato-regular';
   user-select: none;
   cursor: pointer;
+  word-break: break-all;
+  white-space: normal;
 }
 
 .article-textarea {
@@ -33,7 +36,6 @@
   font-family: 'Lato-regular';
   font-size: 24px;
   background-color: transparent;
-
 }
 
 .article-date {
@@ -41,34 +43,29 @@
   margin-top: 20px;
 }
 
-
 .article-nav {
-  flex-basis: 40px;
-  height: 40px;
-  align-self: center;
-  padding: 6px 4px 4px 4px;
-  border-radius: 5px;
-  margin-left: 7px;
-}
-
-
-.article-nav:hover {
-  background-color: rgb(215, 215, 255);
-  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 44px;
 }
 
 .article-icon {
-  flex-basis: 40px;
   width: 44px;
   height: 44px;
   padding: 7px;
-  margin-left: 7px;
-  align-self: center;
+  margin-left: 9px;
   border-radius: 5px;
+  cursor: pointer;
+  opacity: 0.5;
 }
 
 
 .article-icon:hover {
-  background-color: rgb(215, 215, 255);
-  cursor: pointer;
+  background-color: white;
+  opacity: 1;
+}
+
+.article-icon--active {
+  opacity: 1;
 }
