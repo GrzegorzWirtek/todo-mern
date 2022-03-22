@@ -2,16 +2,16 @@ const express = require('express');
 const path = require('path');
 const mongoose = require('mongoose');
 const Task = require('./mongooseSchema.js');
+const dotenv = require('dotenv');
 
+dotenv.config();
 const PORT = process.env.PORT || 3001;
 const app = express();
 
 app.use(express.static(path.resolve(__dirname, '../client/build')));
 app.use(express.json());
 
-const dbName = 'TasksDatabase';
-const mongooseURL = `mongodb+srv://admin:Entropia1@cluster0.193v2.mongodb.net/${dbName}?retryWrites=true&w=majority`;
-mongoose.connect(mongooseURL);
+mongoose.connect(process.env.MONGOOSE_URL);
 const db = mongoose.connection;
 db.on('error', (err) => console.log('Not connected, error:', err));
 db.once('open', (err) => console.log('Connected to database'));
