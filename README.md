@@ -22,6 +22,7 @@ Project is created with:
 
 - **react** version 17.0.2
 - **react-dom** version 17.0.2
+- **CSS**
 
 ## Setup
 
